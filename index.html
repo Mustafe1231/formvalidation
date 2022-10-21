@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form validering </title>
+</head>
+<body>
+    <h1> array med 10 slumptal </h1>
+    <p id="arros"></p>
+    <p id="arrSort"></p>
+
+    <script>
+    let arrNr = [];
+    
+    while (arrNr.length <=10 ) {
+    let randNr = Math.floor(Math.random()*101);
+    if(!arrNr.includes(randNr)) 
+        arrNr.push(randNr);
+    }
+
+
+
+document.getElementById("arros").innerText = "Osorterade: " +  arrNr;
+document.getElementById("arrSort").innerText = "Sorterade: " + arrNr.sort((a,b) =>a-b);
+
+
+
+
+
+
+    
+    </script>
+    <hr>
+    <h1>Form validering med JS</h1>
+    <form action="tack.html" method="POST" id="myForm" name="myForm" onsubmit="return validate()">
+     user:<br> 
+     <input type="text" id="uname" name="uname"> <br>
+     password: <br>
+     <input type="password" id="pass1" name="pass1"> <br>
+     Retype password: <br>
+     <input type="password" id="pass2" name="pass2"> <br>
+     email: <br>
+     <input type="text" id="email" name="email"><br>
+     vilkor: <input type="checkbox" id="vilkor" name="vilkor"> <br>
+     <input type="submit" value="Register">
+
+
+     
+
+
+
+
+    </form>
+
+    <script>
+    function validate(){
+ let userName = document.forms["myForm"]["uname"].value;
+ let password1 = document.forms["myForm"]["pass1"].value;
+ let password2 = document.forms["myForm"]["pass2"].value;
+ let email = document.forms["myForm"]["email"].value;
+ let vilkor = document.forms["myForm"]["value"].checked;
+
+if(userName == ""){
+    alert ("du måste ange användanamn");
+}
+else if(password1 =="" || password1.length < 6 ){
+alert = ("password måste innehålla 6 tecken");
+return false;
+}
+else if(password1 != password2){
+ alert("du måste repetera samma lösenord");
+ return false;
+
+}
+
+else if(email == "" || email.includes("@") && !email.includes(".")  ){
+ alert("skriv en rätt epostadress")
+ return false;
+
+}
+ else if(!vilkor){
+ alert("du måste acceptera vilkor");
+ return false;
+
+ }
+ else {
+return true;
+
+ }
+    } 
+    </script>
+<hr>
+<h1>Form Validering med HTML</h1>
+    <form action="tack.html" method="post">
+        <label for="user">Enter your name: </label>
+        <input type="text" name="user" id="user" required>
+        <br>
+        <label for="pass">Enter your Password: </label>
+        <input type="password" name="pass" minlength="6" id="pass" required>
+        <br>
+        <label for="email">Enter your Email: </label>
+        <input type="email" name="email" id="email" required>
+        <br>
+
+        Villkor <input type="checkbox" name="villkor1" id="villkor1" required> <br>
+
+
+
+        <div class="form-example">
+        <input type="submit" value="Subscribe!">
+        </div>
+        
+    </form>  
+</body>
+</html>
